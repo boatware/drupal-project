@@ -1,0 +1,29 @@
+#!/bin/bash
+
+level="max"
+
+cmd="vendor/bin/phpstan --memory-limit=-1 --level=$level analyze"
+
+dirs=(
+  "web/modules/custom"
+  "web/themes/custom"
+  "web/profiles/custom"
+)
+
+for dir in "${dirs[@]}"
+do
+  if [ ! -d "$dir" ]; then
+    echo "Directory $dir does not exist"
+    continue
+  fi
+
+  # Count php files. If there are no php files, skip the directory.
+  php_files=$(find $dir -type f -name "*.php" | wc -l)
+  if [ "$php_files" -eq 0 ]; then
+    echo "No php files found in $dir"
+    continue
+  fi
+
+  echo "Analyzing $dir"
+  $cmd "$dir"
+done

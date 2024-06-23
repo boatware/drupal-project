@@ -1,0 +1,26 @@
+#!/bin/bash
+
+cmd="php"
+
+dirs=(
+  "./web/modules/custom"
+  "./web/themes/custom"
+  "./web/profiles/custom"
+)
+
+# Configure phpcs to use the Drupal coding standards.
+$cmd vendor/bin/phpcs --config-set installed_paths vendor/drupal/coder/coder_sniffer,vendor/slevomat/coding-standard
+
+for dir in "${dirs[@]}"; do
+  if [ ! -d "$dir" ]; then
+    continue
+  fi
+
+  # Run phpcs with the Drupal standard.
+  $cmd vendor/bin/phpcbf --standard=Drupal "$dir"
+  $cmd vendor/bin/phpcs --standard=Drupal "$dir"
+
+  # Run phpcs with the DrupalPractice standard.
+  $cmd vendor/bin/phpcbf --standard=DrupalPractice "$dir"
+  $cmd vendor/bin/phpcs --standard=DrupalPractice "$dir"
+done

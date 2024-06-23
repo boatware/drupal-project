@@ -1,0 +1,75 @@
+# Ignore all files and directories which are created by Drupals scaffolding.
+/.editorconfig
+/.gitattributes
+/web/core
+/web/modules/contrib
+/web/modules/README.txt
+/web/profiles/contrib
+/web/profiles/README.txt
+/web/themes/contrib
+/web/themes/README.txt
+/web/sites/example.sites.php
+/web/sites/README.txt
+/web/sites/development.services.yml
+/web/sites/example.settings.local.php
+/web/sites/default/default.services.yml
+/web/sites/default/default.settings.php
+/web/.csslintrc
+/web/.eslintignore
+/web/.eslintrc.json
+/web/.ht.router.php
+/web/.htaccess
+/web/autoload.php
+/web/example.gitignore
+/web/index.php
+/web/INSTALL.txt
+/web/README.md
+/web/robots.txt
+/web/update.php
+/web/web.config
+/web/libraries/*
+!/web/libraries/.gitkeep
+
+# Ignore all external dependencies
+/vendor
+
+# Ignore all environment files besides the sample one
+/.env
+/.env.*
+!/.env.example
+
+# Ignore real deployment configuration
+#/deploy.php
+/phpstan.neon
+
+# Ignore all IDE files
+/.idea
+/.fleet
+
+# Ignore all OS files
+.DS_Store
+/.directory
+
+# Ignore all private and temporary files
+/private/*
+!/private/.gitkeep
+/tmp/*
+!/tmp/.gitkeep
+
+# Ignore all uploaded files
+web/sites/default/files/*
+
+phpunit.xml
+phpunit.lando.xml
+
+simpletest
+
+*.sql
+*.sql.gz
+!database.sql.gz
+
+docker/fs/*
+!docker/fs/.gitkeep
+
+*.orig
+*.rej

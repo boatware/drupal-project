@@ -1,0 +1,15 @@
+name: drupal-project
+recipe: drupal10
+config:
+  webroot: ./web
+  php: '8.3'
+services:
+  mailhog:
+    type: mailhog
+    portforward: false
+    hogfrom:
+      - appserver
+  phpmyadmin:
+    type: phpmyadmin
+    hosts:
+      - database

@@ -1,0 +1,37 @@
+services:
+  web:
+    volumes:
+      - ./docker/nginx/default.local.conf:/etc/nginx/conf.d/default.conf
+    restart: no
+
+  adminer:
+    image: adminer
+    ports:
+      - "10040:8080"
+    depends_on:
+      - database
+    restart: no
+
+  php:
+    build:
+      context: ./docker/php
+      dockerfile: local.Dockerfile
+      args:
+          - UID=${UID:-1000}
+          - GID=${GID:-1000}
+    volumes:
+      - ./docker/php/conf.d/sendmail.ini:/usr/local/etc/php/conf.d/sendmail.ini
+      - ./docker/php/php.local.ini:/usr/local/etc/php/conf.d/php.local.ini
+    restart: no
+
+  redis:
+    restart: no
+
+  mailhog:
+    image: mailhog/mailhog
+    ports:
+      - "10050:1025"
+      - "10051:8025"
+    restart: no
+    environment:
+      RELAY_HOST: mailhog:1025

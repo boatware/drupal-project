@@ -1,0 +1,17 @@
+#!/bin/zsh
+
+set -e
+
+dirs=(
+  "web/modules/custom"
+  "web/themes/custom"
+  "web/profiles/custom"
+)
+
+for dir in $dirs; do
+  if [ ! -d $dir ]; then
+    continue
+  fi
+
+  find $dir -name '*.php' -exec sh -c 'i="$1"; php -l "$i" | grep -v "No syntax errors detected"' shell {} \;
+done

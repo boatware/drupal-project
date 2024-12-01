@@ -47,7 +47,8 @@
             "dealerdirect/phpcodesniffer-composer-installer": true,
             "php-http/discovery": true,
             "mnsami/composer-custom-directory-installer": true,
-            "drupal/core-project-message": true
+            "drupal/core-project-message": true,
+            "tbachert/spi": true
         },
         "sort-packages": true
     },
